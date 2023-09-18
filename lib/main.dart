@@ -5,14 +5,10 @@ import 'package:flutter_services/auth/login.dart';
 import 'package:flutter_services/auth/signup.dart';
 import 'package:flutter_services/home.dart';
 
-void main() {
-  fireInitialized();
-  runApp(const MyApp());
-}
-
-fireInitialized() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
