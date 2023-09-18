@@ -31,6 +31,12 @@ class _LoginState extends State<Login> {
                 marginH(50),
                 CustomTxtForm(
                   controller: cEmail,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "This Filed Can’t Be Empty";
+                    }
+                    return null;
+                  },
                   title: "Email",
                   hint: "Enter your email",
                   keyboardType: TextInputType.emailAddress,
@@ -40,6 +46,12 @@ class _LoginState extends State<Login> {
                 marginH(20),
                 CustomTxtForm(
                   controller: cPassword,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "This Filed Can’t Be Empty";
+                    }
+                    return null;
+                  },
                   title: "Password",
                   hint: "Enter your password",
                   icon: Icons.lock,

@@ -1,20 +1,39 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_services/auth/login.dart';
 import 'package:flutter_services/auth/signup.dart';
 import 'package:flutter_services/home.dart';
 
 void main() {
-  // fireInitialized();
+  fireInitialized();
   runApp(const MyApp());
 }
 
-/*fireInitialized() async {
+fireInitialized() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-}*/
+}
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState() {
+    FirebaseAuth.instance.authStateChanges().listen((User? user) {
+      if (user == null) {
+        print('-----------------User is currently signed out!');
+      } else {
+        print('-----------------User is signed in!');
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +45,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         //useMaterial3: true,
       ),
-      home: const SignUp(),
+      home: const Login(),
       routes: {
         "home": (context) => const HomePage(title: ""),
         "login": (context) => const Login(),
@@ -35,4 +54,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

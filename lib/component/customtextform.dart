@@ -4,6 +4,7 @@ class CustomTxtForm extends StatelessWidget {
   const CustomTxtForm({
     super.key,
     required this.controller,
+    this.validator,
     required this.title,
     required this.hint,
     required this.obscureText,
@@ -12,6 +13,7 @@ class CustomTxtForm extends StatelessWidget {
   });
 
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
   final IconData? icon;
   final String title;
   final String hint;
@@ -29,6 +31,7 @@ class CustomTxtForm extends StatelessWidget {
         ),
         TextFormField(
           controller: controller,
+          validator: validator,
           textInputAction: TextInputAction.next,
           keyboardType: keyboardType,
           obscureText: obscureText,
