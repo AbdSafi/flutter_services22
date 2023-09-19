@@ -115,6 +115,8 @@ class _SignUpState extends State<SignUp> {
                             email: cEmail.text,
                             password: cPassword.text,
                           );
+                          FirebaseAuth.instance.currentUser!
+                              .sendEmailVerification();
                           Navigator.of(context).pushReplacementNamed("login");
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'weak-password') {

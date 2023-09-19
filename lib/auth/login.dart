@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_services/auth/signup.dart';
 import 'package:flutter_services/component/customlogo.dart';
 import 'package:flutter_services/component/customtextform.dart';
 
@@ -84,8 +85,14 @@ class _LoginState extends State<Login> {
                           final credential = await FirebaseAuth.instance
                               .signInWithEmailAndPassword(
                                   email: cEmail.text, password: cPassword.text);
-                          //if (!context.mounted) return;
-                          Navigator.of(context).pushReplacementNamed("home");
+                          if (FirebaseAuth
+                              .instance.currentUser!.emailVerified) {
+                            Navigator.of(context).pushReplacementNamed("home");
+                          } else {
+                            SignUp.buildAwesomeDialog(context,
+                                    "check your email ", "Verify your email")
+                                .show();
+                          }
                         } on FirebaseAuthException catch (e) {
                           if (e.code == 'user-not-found') {
                             print(

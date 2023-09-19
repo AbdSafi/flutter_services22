@@ -41,7 +41,8 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         //useMaterial3: true,
       ),
-      home: FirebaseAuth.instance.currentUser != null
+      home: (FirebaseAuth.instance.currentUser != null &&
+              FirebaseAuth.instance.currentUser!.emailVerified)
           ? const HomePage(title: "")
           : const Login(),
       routes: {

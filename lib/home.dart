@@ -11,6 +11,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String? email = FirebaseAuth.instance.currentUser!.email;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +32,10 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () async {},
-              child: const Text("Button"),
+          children: [
+            Text(
+              "$email",
+              style: const TextStyle(fontSize: 20),
             ),
           ],
         ),
