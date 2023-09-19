@@ -87,10 +87,10 @@ class _LoginState extends State<Login> {
                           //if (!context.mounted) return;
                           Navigator.of(context).pushReplacementNamed("home");
                         } on FirebaseAuthException catch (e) {
-                          if (e.code == 'user not found') {
+                          if (e.code == 'user-not-found') {
                             print(
                                 '------------------No user found for that email.');
-                          } else if (e.code == 'wrong password') {
+                          } else if (e.code == 'wrong-password') {
                             print(
                                 '------------------Wrong password provided for that user.');
                           } else {

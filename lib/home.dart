@@ -16,17 +16,24 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.of(context)
+                  .pushNamedAndRemoveUntil("login", (route) => false);
+            },
+            icon: const Icon(Icons.exit_to_app),
+          )
+        ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             ElevatedButton(
-              onPressed: () async {
-                final userCredential =
-                    await FirebaseAuth.instance.signInAnonymously();
-              },
-              child: const Text("Firebase Auth"),
+              onPressed: () async {},
+              child: const Text("Button"),
             ),
           ],
         ),

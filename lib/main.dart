@@ -10,7 +10,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
-///
+
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
@@ -41,7 +41,9 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         //useMaterial3: true,
       ),
-      home: const Login(),
+      home: FirebaseAuth.instance.currentUser != null
+          ? const HomePage(title: "")
+          : const Login(),
       routes: {
         "home": (context) => const HomePage(title: ""),
         "login": (context) => const Login(),
