@@ -108,7 +108,6 @@ class _LoginState extends State<Login> {
     ));
   }
 
-  ///
   SizedBox marginH(double height) {
     return SizedBox(
       height: height,
@@ -169,4 +168,3 @@ class CustomButtonLogin extends StatelessWidget {
     );
   }
 }
-//////

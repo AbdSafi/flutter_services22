@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_services/auth/login.dart';
 import 'package:flutter_services/auth/signup.dart';
+import 'package:flutter_services/category/addcat.dart';
 import 'package:flutter_services/home.dart';
 
 void main() async {
@@ -39,6 +40,10 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         fontFamily: "IndieFlower",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: Colors.green
+        ),
+
         //useMaterial3: true,
       ),
       home: (FirebaseAuth.instance.currentUser != null &&
@@ -49,6 +54,7 @@ class _MyAppState extends State<MyApp> {
         "home": (context) => const HomePage(title: ""),
         "login": (context) => const Login(),
         "signup": (context) => const SignUp(),
+        "addcat": (context) => const AddCategories(),
       },
     );
   }
