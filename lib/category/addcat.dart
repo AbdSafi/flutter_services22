@@ -8,7 +8,7 @@ class AddCategories extends StatefulWidget {
   State<AddCategories> createState() => _AddCategoriesState();
 }
 
-///
+//k
 class _AddCategoriesState extends State<AddCategories> {
   TextEditingController catController = TextEditingController();
   CollectionReference cate =
