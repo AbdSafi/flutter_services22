@@ -13,6 +13,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<QueryDocumentSnapshot> data = [];
+
+  getData() async {
+    QuerySnapshot query =
+        await FirebaseFirestore.instance.collection('categories').get();
+    data.addAll(query.docs);
+    setState(() {
+
+    });
+  }
+
+  @override
+  void initState() {
+    getData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +50,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: GridView.builder(
-          itemCount: 6,
+          itemCount: data.length,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 1.6,
@@ -46,9 +62,10 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Image.asset("assets/images/folder.png",
                       height: 60, width: 60),
-                  const Text(
-                    "Sports",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                  Text(
+                    data[i]["name"],
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 18),
                   ),
                 ],
               ),

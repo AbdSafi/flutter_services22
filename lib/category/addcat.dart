@@ -29,6 +29,8 @@ class _AddCategoriesState extends State<AddCategories> {
     if (formKey.currentState!.validate()) {
       try {
         cat.add({"name": catController.text});
+        print('catttttttttttttttttttttttttt added');
+        Navigator.of(context).pushNamedAndRemoveUntil("home",(route) => false);
       } catch (e) {
         print('$e');
       }
