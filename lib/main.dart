@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,10 @@ class _MyAppState extends State<MyApp> {
         print('-----------------User is signed in!');
       }
     });
+
+    FirebaseFirestore.instance.settings =
+        const Settings(persistenceEnabled: true);
+
     super.initState();
   }
 
@@ -41,8 +46,7 @@ class _MyAppState extends State<MyApp> {
         fontFamily: "IndieFlower",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
         floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: Colors.green
-        ),
+            backgroundColor: Colors.green),
 
         //useMaterial3: true,
       ),

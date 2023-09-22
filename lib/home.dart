@@ -14,14 +14,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<QueryDocumentSnapshot> data = [];
+  bool isLoading = true;
 
   getData() async {
     QuerySnapshot query =
         await FirebaseFirestore.instance.collection('categories').get();
     data.addAll(query.docs);
-    setState(() {
-
-    });
+    isLoading = false;
+    setState(() {});
   }
 
   @override
@@ -49,28 +49,30 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      body: GridView.builder(
-          itemCount: data.length,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 1.6,
-          ),
-          itemBuilder: (context, i) {
-            return Card(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Image.asset("assets/images/folder.png",
-                      height: 60, width: 60),
-                  Text(
-                    data[i]["name"],
-                    style: const TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 18),
-                  ),
-                ],
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : GridView.builder(
+              itemCount: data.length,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: 1.6,
               ),
-            );
-          }),
+              itemBuilder: (context, i) {
+                return Card(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Image.asset("assets/images/folder.png",
+                          height: 60, width: 60),
+                      Text(
+                        data[i]["name"],
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ],
+                  ),
+                );
+              }),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed("addcat");

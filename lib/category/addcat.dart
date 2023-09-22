@@ -30,7 +30,7 @@ class _AddCategoriesState extends State<AddCategories> {
       try {
         cat.add({"name": catController.text});
         print('catttttttttttttttttttttttttt added');
-        Navigator.of(context).pushNamedAndRemoveUntil("home",(route) => false);
+        Navigator.of(context).pushNamedAndRemoveUntil("home", (route) => false);
       } catch (e) {
         print('$e');
       }
@@ -77,7 +77,7 @@ class _AddCategoriesState extends State<AddCategories> {
                   ),
                   child: const Text('Add Category'),
                 ),
-              )
+              ),
             ],
           ),
         ),
