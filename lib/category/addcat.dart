@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AddCategories extends StatefulWidget {
@@ -18,8 +19,10 @@ class _AddCategoriesState extends State<AddCategories> {
     return cate
         .add({
           'name': catController.text,
+          'id': FirebaseAuth.instance.currentUser!.uid,
         })
-        .then((value) => print("Category Added"))
+        .then((value) => print(
+            "Category Added ${FirebaseAuth.instance.currentUser!.uid} || ${catController.text}"))
         .catchError((error) => print("Failed to add Category: $error"));
   }
 
@@ -28,8 +31,12 @@ class _AddCategoriesState extends State<AddCategories> {
         FirebaseFirestore.instance.collection("categories");
     if (formKey.currentState!.validate()) {
       try {
-        cat.add({"name": catController.text});
-        print('catttttttttttttttttttttttttt added');
+        cat.add({
+          'id': FirebaseAuth.instance.currentUser!.uid,
+          "name": catController.text,
+        });
+        print(
+            'Category added :${FirebaseAuth.instance.currentUser!.uid} || ${catController.text}');
         Navigator.of(context).pushNamedAndRemoveUntil("home", (route) => false);
       } catch (e) {
         print('$e');

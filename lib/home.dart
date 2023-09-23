@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List data = [];
   bool isLoading = true;
-  //
+
   getData() async {
     QuerySnapshot query =
         await FirebaseFirestore.instance.collection('categories').get();
@@ -36,6 +36,14 @@ class _HomePageState extends State<HomePage> {
       print('ssssssssss||${querySnapshot.docs[2]['name']}');
     });
   }*/
+
+  Future<void> _refreshList() async {
+    // Simulate fetching new data here (replace with your own data-fetching logic)
+    setState(() {
+      data.clear();
+      getData();
+    });
+  }
 
   @override
   void initState() {
@@ -64,28 +72,31 @@ class _HomePageState extends State<HomePage> {
       ),
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
-          : GridView.builder(
-              itemCount: data.length,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.6,
-              ),
-              itemBuilder: (context, i) {
-                return Card(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Image.asset("assets/images/folder.png",
-                          height: 60, width: 60),
-                      Text(
-                        data[i]["name"],
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
-                      ),
-                    ],
+          : RefreshIndicator(
+              onRefresh: _refreshList,
+              child: GridView.builder(
+                  itemCount: data.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 1.6,
                   ),
-                );
-              }),
+                  itemBuilder: (context, i) {
+                    return Card(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Image.asset("assets/images/folder.png",
+                              height: 60, width: 60),
+                          Text(
+                            data[i]["name"],
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+            ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).pushNamed("addcat");
