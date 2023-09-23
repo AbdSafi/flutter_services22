@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
     isLoading = false;
     setState(() {});
   }
-    //
+
   // error please try again later
   /*getData() async {
     FirebaseFirestore.instance
