@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<QueryDocumentSnapshot> data = [];
+  List data = [];
   bool isLoading = true;
 
   getData() async {
@@ -23,6 +23,19 @@ class _HomePageState extends State<HomePage> {
     isLoading = false;
     setState(() {});
   }
+
+  // error please try again later
+  /*getData() async {
+    FirebaseFirestore.instance
+        .collection('categories')
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      for (int i = 0; i < querySnapshot.size; i++) {
+        data.add(querySnapshot.docs[i]['name']);
+      }
+      print('ssssssssss||${querySnapshot.docs[2]['name']}');
+    });
+  }*/
 
   @override
   void initState() {

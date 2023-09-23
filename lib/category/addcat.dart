@@ -36,7 +36,7 @@ class _AddCategoriesState extends State<AddCategories> {
       }
     }
   }
-///
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
