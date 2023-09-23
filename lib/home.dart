@@ -17,8 +17,10 @@ class _HomePageState extends State<HomePage> {
   bool isLoading = true;
 
   getData() async {
-    QuerySnapshot query =
-        await FirebaseFirestore.instance.collection('categories').get();
+    QuerySnapshot query = await FirebaseFirestore.instance
+        .collection('categories')
+        .where("id", isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get();
     data.addAll(query.docs);
     isLoading = false;
     setState(() {});
