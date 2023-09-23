@@ -15,7 +15,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List data = [];
   bool isLoading = true;
-  ///
+  //
   getData() async {
     QuerySnapshot query =
         await FirebaseFirestore.instance.collection('categories').get();
