@@ -30,6 +30,12 @@ class _EditCategoriesState extends State<EditCategories> {
   }
 
   @override
+  void initState() {
+    catController.text = widget.title;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
