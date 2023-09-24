@@ -35,6 +35,7 @@ class _EditCategoriesState extends State<EditCategories> {
     super.initState();
   }
 
+  //
   @override
   Widget build(BuildContext context) {
     return Scaffold(
