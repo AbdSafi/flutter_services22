@@ -23,7 +23,7 @@ class _NotificationFCMState extends State<NotificationFCM> {
   @override
   void initState() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-      print('fcm -----------------------------');
+      print('fcm ----------------------------');
       if (message.notification != null) {
         print('${message.notification!.title}');
         print('${message.notification!.body}');
