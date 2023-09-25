@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_services/auth/login.dart';
 import 'package:flutter_services/auth/signup.dart';
 import 'package:flutter_services/category/addcat.dart';
+import 'package:flutter_services/fcm/notifytest.dart';
 import 'package:flutter_services/home.dart';
 
 void main() async {
@@ -45,15 +46,17 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         fontFamily: "IndieFlower",
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-            backgroundColor: Colors.green),
+        floatingActionButtonTheme:
+            const FloatingActionButtonThemeData(backgroundColor: Colors.green),
 
         //useMaterial3: true,
       ),
-      home: (FirebaseAuth.instance.currentUser != null &&
+      home:
+          const NotificationFCM() /*(FirebaseAuth.instance.currentUser != null &&
               FirebaseAuth.instance.currentUser!.emailVerified)
           ? const HomePage(title: "")
-          : const Login(),
+          : const Login()*/
+      ,
       routes: {
         "home": (context) => const HomePage(title: ""),
         "login": (context) => const Login(),
