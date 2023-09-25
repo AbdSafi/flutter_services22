@@ -11,7 +11,7 @@ class NotificationFCM extends StatefulWidget {
 class _NotificationFCMState extends State<NotificationFCM> {
   getToken() async {
     String? token = await FirebaseMessaging.instance.getToken();
-    print('----------------------------------------');
+    print('---------------------------------------');
     print(token);
   }
 
