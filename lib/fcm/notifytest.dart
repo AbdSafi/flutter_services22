@@ -10,6 +10,7 @@ class NotificationFCM extends StatefulWidget {
   @override
   State<NotificationFCM> createState() => _NotificationFCMState();
 }
+
 //
 class _NotificationFCMState extends State<NotificationFCM> {
   String? token;
